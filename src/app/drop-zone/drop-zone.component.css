@@ -1,0 +1,27 @@
+.drop-zone {
+    border: 3px solid rgb(157, 198, 239); /* Cadre solide plus épais */
+    border-radius: 10px; /* Coins plus arrondis */
+    padding: 18px; /* Augmente l'espace intérieur */
+    font-size: 19px; /* Légèrement réduit la taille de la police */
+    background-color: rgb(240, 240, 240); /* Change le fond pour une couleur plus claire */
+    color: rgb(10, 10, 10); /* Change la couleur du texte pour plus de contraste */
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Modifie la police pour un style plus moderne */
+    text-align: center; /* Centre le texte à l'intérieur de la zone */
+    box-shadow: 0px 4px 8px rgba(4, 31, 57, 0.1); /* Ajoute une ombre subtile pour donner un effet de profondeur */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transition pour les effets au survol */
+}
+
+.drop-zone:hover {
+    background-color: rgb(239, 243, 246); /* Change la couleur de fond au survol */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Accentue l'ombre au survol */
+}
+
+.dropped-item {
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 1%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1%;  
+}

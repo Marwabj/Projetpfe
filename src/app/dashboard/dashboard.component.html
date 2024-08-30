@@ -1,0 +1,60 @@
+<div class="container-fluid vh-100 d-flex flex-column">
+  <div class="row flex-grow-1">
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <a class="navbar-brand" href="#">
+        <img src="assets/logo_cni.png" alt="Logo" style="height: 110px" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Formulaire</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Template</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Dashboard</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Sidebar Menu -->
+    <div class="col-md-2 bg-light border-right vh-100 overflow-auto">
+      <div class="list-group mt-3">
+        <ul class="nav flex-column">
+          <li *ngFor="let item of draggableItems" class="list-group-item">
+            <fb-draggable-item
+              [label]="item.label"
+              [type]="item.type"
+              [icon]="item.icon"
+            ></fb-draggable-item>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="col-md-10 vh-100 d-flex flex-column overflow-auto">
+      <div class="d-flex flex-column flex-grow-1">
+        <!-- Drop Zone -->
+        <div class="flex-grow-2">
+          <fb-drop-zone class="h-100"></fb-drop-zone>
+        </div>
+        <!-- Preview Component -->
+        <div class="flex-grow-1">
+          <fb-preview class="h-100"></fb-preview>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

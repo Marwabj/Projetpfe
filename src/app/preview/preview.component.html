@@ -1,0 +1,102 @@
+<div #preview class="d-flex justify-content-center align-items-center h-100">
+    <!-- Check if there are any controls to render -->
+    <ng-container *ngIf="form && form.length > 0; else noElements">
+        <form #myForm="ngForm" [formGroup]="dynamicForm" class="row g-3">
+            <ng-container *ngFor="let control of form">
+                <ng-container *ngIf="['text','email','password','number','date'].includes(control.type)">
+                    <div [class]="control.class">
+                        <label class="form-label">{{control.label}}</label>
+                        <input [placeholder]="control.placeholder" formControlName="{{control.name}}"
+                            class="form-control" [type]="control.type">
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="control.type === 'select'">
+                    <div [class]="control.class">
+                        <label class="form-label">{{control.label}}</label>
+                        <select formControlName="{{control.name}}" class="form-select"
+                            aria-label="Default select example">
+                            <option selected value="">Choose</option>
+                            <ng-container *ngFor="let opt of control.options">
+                                <option [id]="opt.id" value="{{opt.value}}">{{opt.value}}</option>
+                            </ng-container>
+                        </select>
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="control.type === 'radio'">
+                    <div [class]="control.class">
+                        <label>{{control.label}}</label>
+                        <div class="form-check" *ngFor="let row of control.radioOptions">
+                            <input formControlName="{{control?.name}}" [value]="row" class="form-check-input"
+                                type="radio">
+                            <label [for]="control?.name" class="form-check-label">{{row}}</label>
+                        </div>
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="control.type==='textarea'">
+                    <div [class]="control.class">
+                        <label>{{control.label}}</label>
+                        <textarea formControlName="{{control.name}}" class="form-control"
+                            [placeholder]="control.placeholder"></textarea>
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="control.type==='checkbox'">
+                    <div [class]="control.class" [formGroupName]="control.name">
+                        <label>{{control.label}}</label>
+                        <ng-container *ngFor="let option of control.checkboxOptions">
+                            <div class="form-check">
+                                <input [formControlName]="option.value" class="form-check-input" type="checkbox"
+                                    [value]="option.value">
+                                <label>{{option.label}}</label>
+                            </div>
+                        </ng-container>
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="control.type==='file'">
+                    <div [class]="control.class">
+                        <label>{{control.label}}</label>
+                        <div class="input-group mb-3">
+                            <input formControlName="{{control.name}}" type="file" name="fileUpload" class="form-control"
+                                [accept]="control.acceptedFileTypes">
+                            <span class="input-group-text"
+                                id="basic-addon2"><mat-icon>vertical_align_top</mat-icon>Upload</span>
+                        </div>
+                        <small
+                            *ngIf="dynamicForm.get(control.name)?.invalid && dynamicForm.get(control.name)?.touched || myForm.submitted"
+                            class="text-danger">{{getValidationError(control)}}</small>
+                    </div>
+                </ng-container>
+
+            </ng-container>
+
+            <!-- Buttons: only displayed if there are controls -->
+            <div class="d-flex justify-content-end mt-4">
+                <button [disabled]="dynamicForm.invalid" (click)="onSubmit()" type="submit"
+                    class="btn btn-primary mx-2">Submit</button>
+                <button (click)="saveForm()" type="button" class="btn btn-secondary mx-2">Save</button>
+                <button (click)="downloadPreview()" class="btn btn-secondary mx-2">Download Preview</button>
+            </div>
+        </form>
+    </ng-container>
+
+    <!-- Template to display when no elements to render -->
+    <ng-template #noElements>
+        <div class="preview-zone flex-grow-1 d-flex align-items-center justify-content-center">
+            <ng-container>Preview Zone</ng-container>
+        </div>
+    </ng-template>
+</div>

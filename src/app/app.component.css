@@ -1,0 +1,8 @@
+.cdk-overlay-pane {
+  z-index: 1000;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+}

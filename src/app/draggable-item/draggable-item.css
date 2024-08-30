@@ -1,0 +1,5 @@
+/* fb-draggable-item.component.css */
+.draggable-item i {
+  font-size: 1.5em; /* Ajustez la taille de l'icône si nécessaire */
+  margin-right: 10px; /* Espacement entre l'icône et le texte */
+}
